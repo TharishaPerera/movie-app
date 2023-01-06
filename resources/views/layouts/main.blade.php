@@ -15,25 +15,25 @@
 </head>
 <body class="font-sans bg-gray-900 text-white">
     <nav class="border-b border-gray-800">
-        <div class="container mx-auto flex items-center justify-between px-4 py-2">
-            <ul class="flex item-center">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-2">
+            <ul class="flex flex-col md:flex-row items-center">
                 <li>
                     <a href="#">
                         <img src="/images/logo.png" width="150px" alt="Logo">
                     </a>
                 </li>
-                <li class="ml-6 mt-1.5">
+                <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
                     <a href="#" class="hover:text-gray-400 align-middle">Movies</a>
                 </li>
-                <li class="ml-6 mt-1.5">
+                <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
                     <a href="#" class="hover:text-gray-400 align-middle">TV Shows</a>
                 </li>
-                <li class="ml-6 mt-1.5">
+                <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
                     <a href="#" class="hover:text-gray-400 align-middle">Actors</a>
                 </li>
             </ul>
-            <div class="flex item-center">
-                <div class="relative">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="relative mt-3 md:mt-0">
                     <input type="text" class="bg-gray-800 text-sm leading-6 rounded-full w-60 px-2 pl-7 py-1" placeholder="Search" />
                     <div class="absolute top-0">
                         <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24" fill="#a6a6a6" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@
                         </svg>
                     </div>
                 </div>
-                <div class="ml-4">
+                <div class="md:ml-4 mt-3 md:mt-0">
                     <a href="#">
                         <img src="/images/actor3.jpg" alt="profile" class="rounded-full w-8 h-8">
                     </a>
