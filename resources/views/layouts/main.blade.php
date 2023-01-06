@@ -23,13 +23,13 @@
                     </a>
                 </li>
                 <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
-                    <a href="#" class="hover:text-gray-400 align-middle">Movies</a>
+                    <a href="#" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">Movies</a>
                 </li>
                 <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
-                    <a href="#" class="hover:text-gray-400 align-middle">TV Shows</a>
+                    <a href="#" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">TV Shows</a>
                 </li>
                 <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
-                    <a href="#" class="hover:text-gray-400 align-middle">Actors</a>
+                    <a href="#" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">Actors</a>
                 </li>
             </ul>
             <div class="flex flex-col md:flex-row items-center">
