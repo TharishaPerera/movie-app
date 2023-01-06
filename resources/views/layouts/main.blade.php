@@ -23,18 +23,30 @@
                     </a>
                 </li>
                 <li class="ml-6 mt-1.5">
-                    <a href="#" class="hover:text-gray-300 align-middle">Movies</a>
+                    <a href="#" class="hover:text-gray-400 align-middle">Movies</a>
                 </li>
                 <li class="ml-6 mt-1.5">
-                    <a href="#" class="hover:text-gray-300 align-middle">TV Shows</a>
+                    <a href="#" class="hover:text-gray-400 align-middle">TV Shows</a>
                 </li>
                 <li class="ml-6 mt-1.5">
-                    <a href="#" class="hover:text-gray-300 align-middle">Actors</a>
+                    <a href="#" class="hover:text-gray-400 align-middle">Actors</a>
                 </li>
             </ul>
             <div class="flex item-center">
                 <div class="relative">
-                    <input type="text" class="bg-gray-800 rounded-full w-64 px-2 pl-8 py-1" placeholder="Search" />
+                    <input type="text" class="bg-gray-800 text-sm leading-6 rounded-full w-60 px-2 pl-7 py-1" placeholder="Search" />
+                    <div class="absolute top-0">
+                        <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24" fill="#a6a6a6" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="7" stroke="#a6a6a6" stroke-width="2"/>
+                            <path d="M11 8C10.606 8 10.2159 8.0776 9.85195 8.22836C9.48797 8.37913 9.15726 8.6001 8.87868 8.87868C8.6001 9.15726 8.37913 9.48797 8.22836 9.85195C8.0776 10.2159 8 10.606 8 11" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M20 20L17 17" stroke="#a6a6a6" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="ml-4">
+                    <a href="#">
+                        <img src="/images/actor3.jpg" alt="profile" class="rounded-full w-8 h-8">
+                    </a>
                 </div>
             </div>
         </div>
