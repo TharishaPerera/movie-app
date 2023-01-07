@@ -15,21 +15,21 @@
 </head>
 <body class="font-sans bg-gray-900 text-white">
     <nav class="border-b border-gray-800">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-2">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-16 py-2">
             <ul class="flex flex-col md:flex-row items-center">
                 <li>
-                    <a href="#">
+                    <a href="{{ route('movies.index') }}">
                         <img src="/images/logo.png" width="150px" alt="Logo">
                     </a>
                 </li>
                 <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
-                    <a href="#" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">Movies</a>
+                    <a href="{{ route('movies.index') }}" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">Movies</a>
                 </li>
                 <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
-                    <a href="#" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">TV Shows</a>
+                    <a href="{{ route('movies.index') }}" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">TV Shows</a>
                 </li>
                 <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
-                    <a href="#" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">Actors</a>
+                    <a href="{{ route('movies.index') }}" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">Actors</a>
                 </li>
             </ul>
             <div class="flex flex-col md:flex-row items-center">
