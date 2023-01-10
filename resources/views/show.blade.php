@@ -63,11 +63,11 @@
     </div>  <!-- End movie info -->
 
     <div class="movie-cast border-b border-gray-800">
-        <div class="container mx-auto px-4 py-10">
+        <div class="container mx-auto px-16 py-10">
             <h2 class="text-4xl font-semibold">Cast</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
                 @foreach($movie['credits']['cast'] as $cast)
-                    @if($loop->index < 5)
+                    @if($loop->index < 6)
                         <div class="mt-8">
                             <img src="{{ 'https://image.tmdb.org/t/p/w500' . $cast['profile_path'] }}" alt="parasite"
                                  class="hover:opacity-75 transition ease-in-out duration-150 rounded-lg">
@@ -85,7 +85,7 @@
     </div>  <!-- Cast end -->
 
     <div class="movie-cast border-b border-gray-800">
-        <div class="container mx-auto px-4 py-10">
+        <div class="container mx-auto px-16 py-10">
             <h2 class="text-4xl font-semibold">Images</h2>
             <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($movie['images']['backdrops'] as $image)
