@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ViewModels\MoviesViewModel;
+use App\ViewModels\MovieViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -25,15 +27,23 @@ class MoviesController extends Controller
 
         $genreArray = Http::get($baseURL . '/genre/movie/list' . $apiKey)
             ->json()['genres'];
-        $genreArray = collect($genreArray)->mapWithKeys(function ($genre){
-            return [$genre['id'] => $genre['name']];
-        });
+//        $genreArray = collect($genreArray)->mapWithKeys(function ($genre){
+//            return [$genre['id'] => $genre['name']];
+//        });
 
-        return view('index', [
-            'popularMovies' => $popularMovies,
-            'nowPlayingMovies' => $nowPlayingMovies,
-            'genres' => $genreArray,
-        ]);
+//        return view('index', [
+//            'popularMovies' => $popularMovies,
+//            'nowPlayingMovies' => $nowPlayingMovies,
+//            'genres' => $genreArray,
+//        ]);
+
+        $viewModel = new MoviesViewModel(
+            $popularMovies,
+            $nowPlayingMovies,
+            $genreArray,
+        );
+
+        return view('index', $viewModel);
     }
 
     /**
@@ -78,10 +88,9 @@ class MoviesController extends Controller
             return [$genre['id'] => $genre['name']];
         });
 
-        return view('show', [
-            'movie' => $movie,
-            'genres' => $genreArray,
-        ]);
+        $viewModel = new MovieViewModel($movie);
+
+        return view('show', $viewModel);
     }
 
     /**

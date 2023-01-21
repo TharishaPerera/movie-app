@@ -3,7 +3,7 @@
 @section('content')
     <div class="movie-info border-b border-gray-800">
         <div class="container mx-auto px-16 py-16 flex flex-col md:flex-row">
-            <img src="{{ 'https://image.tmdb.org/t/p/w500' . $movie['poster_path'] }}" alt="parasite"
+            <img src="{{ $movie['poster_path'] }}" alt="parasite"
                  class="w-full md:w-96 rounded-lg">
             <div class="md:ml-24">
                 <h2 class="text-4xl font-semibold">{{ $movie["title"] }}</h2>
@@ -14,16 +14,12 @@
                             d="M16.0005 0L21.4392 9.27275L32.0005 11.5439L24.8005 19.5459L25.889 30.2222L16.0005 25.895L6.11194 30.2222L7.20049 19.5459L0.000488281 11.5439L10.5618 9.27275L16.0005 0Z"
                             fill="#FFCB45"/>
                     </svg>
-                    <span class="ml-1">{{ $movie['vote_average'] * 10 . "%" }}</span>
+                    <span class="ml-1">{{ $movie['vote_average'] }}</span>
                     <span class="mx-2">|</span>
-                    <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d, Y') }}</span>
+                    <span>{{ $movie['release_date'] }}</span>
                     <span class="mx-2">|</span>
                     <span>
-                        @foreach($movie['genres'] as $genre)
-                            {{ $genre['name'] }}@if(!$loop->last)
-                                ,
-                            @endif
-                        @endforeach
+                        {{ $movie['genres'] }}
                     </span>
                 </div>
                 <p class="text-gray-300 mt-8">
@@ -32,13 +28,11 @@
                 <div class="mt-12">
                     <h4 class="text-white font-semibold">Featured Cast</h4>
                     <div class="flex mt-4 gap-8">
-                        @foreach($movie['credits']['crew'] as $crew)
-                            @if($loop->index < 3)
-                                <div>
-                                    <div>{{ $crew['name'] }}</div>
-                                    <div class="text-sm text-gray-400">{{ $crew['job'] }}</div>
-                                </div>
-                            @endif
+                        @foreach($movie['crew'] as $crew)
+                            <div>
+                                <div>{{ $crew['name'] }}</div>
+                                <div class="text-sm text-gray-400">{{ $crew['job'] }}</div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -97,19 +91,17 @@
         <div class="container mx-auto px-16 py-10">
             <h2 class="text-4xl font-semibold">Cast</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-                @foreach($movie['credits']['cast'] as $cast)
-                    @if($loop->index < 6)
-                        <div class="mt-8">
-                            <img src="{{ 'https://image.tmdb.org/t/p/w500' . $cast['profile_path'] }}" alt="parasite"
-                                 class="hover:opacity-75 transition ease-in-out duration-150 rounded-lg">
-                            <div class="mt-2">
-                                <span class="text-lg mt-2">{{ $cast['name'] }}</span>
-                                <div class="flex items-center text-gray-400 text-sm">
-                                    <span>{{ $cast['character'] }}</span>
-                                </div>
+                @foreach($movie['cast'] as $cast)
+                    <div class="mt-8">
+                        <img src="{{ 'https://image.tmdb.org/t/p/w500' . $cast['profile_path'] }}" alt="parasite"
+                             class="hover:opacity-75 transition ease-in-out duration-150 rounded-lg">
+                        <div class="mt-2">
+                            <span class="text-lg mt-2">{{ $cast['name'] }}</span>
+                            <div class="flex items-center text-gray-400 text-sm">
+                                <span>{{ $cast['character'] }}</span>
                             </div>
                         </div>
-                    @endif
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -119,20 +111,18 @@
         <div class="container mx-auto px-16 py-10">
             <h2 class="text-4xl font-semibold">Images</h2>
             <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($movie['images']['backdrops'] as $image)
-                    @if($loop->index < 15)
-                        <div class="mt-8">
-                            <a
-                                @click.prevent="
-                                    isOpen = true,
-                                    image = '{{ 'https://image.tmdb.org/t/p/original' . $image['file_path'] }}'
-                                "
-                                href="">
-                                <img src="{{ 'https://image.tmdb.org/t/p/w500' . $image['file_path'] }}" alt="parasite"
-                                     class="hover:opacity-75 transition ease-in-out duration-150 rounded-lg">
-                            </a>
-                        </div>
-                    @endif
+                @foreach($movie['images'] as $image)
+                    <div class="mt-8">
+                        <a
+                            @click.prevent="
+                                isOpen = true,
+                                image = '{{ 'https://image.tmdb.org/t/p/original' . $image['file_path'] }}'
+                            "
+                            href="">
+                            <img src="{{ 'https://image.tmdb.org/t/p/w500' . $image['file_path'] }}" alt="parasite"
+                                 class="hover:opacity-75 transition ease-in-out duration-150 rounded-lg">
+                        </a>
+                    </div>
                 @endforeach
                 <!-- Image View Modal -->
                 <div

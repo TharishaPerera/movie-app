@@ -14,7 +14,7 @@
         @keydown="isOpen = true"
         type="text"
         class="bg-gray-800 text-sm leading-6 rounded-full w-60 px-2 pl-7 py-1"
-        placeholder="Search" />
+        placeholder="Search (Press '/' to focus)" />
     <div class="absolute top-0">
         <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24" fill="#a6a6a6" xmlns="http://www.w3.org/2000/svg">
             <circle cx="11" cy="11" r="7" stroke="#a6a6a6" stroke-width="2"/>
