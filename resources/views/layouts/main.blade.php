@@ -35,16 +35,16 @@
                     <a href="{{ route('movies.index') }}" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">TV Shows</a>
                 </li>
                 <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
-                    <a href="{{ route('movies.index') }}" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">Actors</a>
+                    <a href="{{ route('actors.index') }}" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">Actors</a>
                 </li>
             </ul>
             <div class="flex flex-col md:flex-row items-center">
                 <livewire:search-dropdown />
-                <div class="md:ml-4 mt-3 md:mt-0">
-                    <a href="#">
-                        <img src="/images/actor3.jpg" alt="profile" class="rounded-full w-8 h-8">
-                    </a>
-                </div>
+{{--                <div class="md:ml-4 mt-3 md:mt-0">--}}
+{{--                    <a href="#">--}}
+{{--                        <img src="/images/actor3.jpg" alt="profile" class="rounded-full w-8 h-8">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
             </div>
         </div>
     </nav>
@@ -52,5 +52,7 @@
 
     <!-- Live Wire Scripts-->
     <livewire:scripts />
+
+    @yield('scripts')
 </body>
 </html>

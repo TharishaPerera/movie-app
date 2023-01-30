@@ -3,7 +3,7 @@
 @section('content')
     <div class="movie-info border-b border-gray-800">
         <div class="container mx-auto px-16 py-16 flex flex-col md:flex-row">
-            <img src="{{ $movie['poster_path'] }}" alt="parasite"
+            <img src="{{ $movie['poster_path'] }}" alt="poster"
                  class="w-full md:w-96 rounded-lg">
             <div class="md:ml-24">
                 <h2 class="text-4xl font-semibold">{{ $movie["title"] }}</h2>
@@ -74,7 +74,9 @@
                                          style="padding-top: 56.25%;">
                                         <iframe width="560" height="315"
                                                 class="resposive-iframe absolute top-0 left-0 w-full h-full"
-                                                src="https://www.youtube.com/embed/{{ $movie['videos']['results'][0]['key'] }}"
+                                                @if($movie['videos']['results'])
+                                                    src="https://www.youtube.com/embed/{{ $movie['videos']['results'][0]['key'] }}"
+                                                @endif
                                                 style="border: 0;"
                                                 allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                     </div>
@@ -93,10 +95,12 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
                 @foreach($movie['cast'] as $cast)
                     <div class="mt-8">
-                        <img src="{{ 'https://image.tmdb.org/t/p/w500' . $cast['profile_path'] }}" alt="parasite"
-                             class="hover:opacity-75 transition ease-in-out duration-150 rounded-lg">
+                        <a href="{{ route('actors.show', $cast['id']) }}">
+                            <img src="{{ 'https://image.tmdb.org/t/p/w500' . $cast['profile_path'] }}" alt="image"
+                                class="hover:opacity-75 transition ease-in-out duration-150 rounded-lg">
+                        </a>
                         <div class="mt-2">
-                            <span class="text-lg mt-2">{{ $cast['name'] }}</span>
+                            <a href="{{ route('actors.show', $cast['id']) }}" class="text-lg mt-2 hover:text-gray-300">{{ $cast['name'] }}</a>
                             <div class="flex items-center text-gray-400 text-sm">
                                 <span>{{ $cast['character'] }}</span>
                             </div>
@@ -119,7 +123,7 @@
                                 image = '{{ 'https://image.tmdb.org/t/p/original' . $image['file_path'] }}'
                             "
                             href="">
-                            <img src="{{ 'https://image.tmdb.org/t/p/w500' . $image['file_path'] }}" alt="parasite"
+                            <img src="{{ 'https://image.tmdb.org/t/p/w500' . $image['file_path'] }}" alt="image"
                                  class="hover:opacity-75 transition ease-in-out duration-150 rounded-lg">
                         </a>
                     </div>

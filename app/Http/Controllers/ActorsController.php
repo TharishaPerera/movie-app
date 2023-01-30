@@ -2,48 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\ViewModels\MoviesViewModel;
-use App\ViewModels\MovieViewModel;
+use App\ViewModels\ActorsViewModel;
+use App\ViewModels\ActorViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class MoviesController extends Controller
+class ActorsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($page = 1)
     {
+        abort_if($page > 500, 204);
+
         $baseURL = config('services.tmdb.baseUrl');
         $apiKey = "?api_key=" . config('services.tmdb.token');
 
-        $popularMovies = Http::get($baseURL . '/movie/popular' . $apiKey)
+        $popularActors = Http::get($baseURL . '/person/popular' . $apiKey . '&page=' . $page)
             ->json()['results'];
 
-        $nowPlayingMovies = Http::get($baseURL . '/movie/now_playing' . $apiKey)
-            ->json()['results'];
+        $viewModel = new ActorsViewModel($popularActors, $page);
 
-        $genreArray = Http::get($baseURL . '/genre/movie/list' . $apiKey)
-            ->json()['genres'];
-//        $genreArray = collect($genreArray)->mapWithKeys(function ($genre){
-//            return [$genre['id'] => $genre['name']];
-//        });
-
-//        return view('index', [
-//            'popularMovies' => $popularMovies,
-//            'nowPlayingMovies' => $nowPlayingMovies,
-//            'genres' => $genreArray,
-//        ]);
-
-        $viewModel = new MoviesViewModel(
-            $popularMovies,
-            $nowPlayingMovies,
-            $genreArray,
-        );
-
-        return view('movies.index', $viewModel);
+        return view('actors.index', $viewModel);
     }
 
     /**
@@ -77,20 +60,17 @@ class MoviesController extends Controller
     {
         $baseURL = config('services.tmdb.baseUrl');
         $apiKey = "?api_key=" . config('services.tmdb.token');
-        $appends = 'credits,videos,images';
 
-        $movie = Http::get($baseURL . '/movie/' . $id . $apiKey . '&append_to_response=' . $appends)
+        $actor = Http::get($baseURL . '/person/' . $id . $apiKey )
+            ->json();
+        $social = Http::get($baseURL . '/person/' . $id . '/external_ids' . $apiKey )
+            ->json();
+        $credits = Http::get($baseURL . '/person/' . $id . '/combined_credits' . $apiKey )
             ->json();
 
-        $genreArray = Http::get($baseURL . '/genre/movie/list' . $apiKey)
-            ->json()['genres'];
-        $genreArray = collect($genreArray)->mapWithKeys(function ($genre){
-            return [$genre['id'] => $genre['name']];
-        });
+        $viewModel = new ActorViewModel($actor, $social, $credits);
 
-        $viewModel = new MovieViewModel($movie);
-
-        return view('movies.show', $viewModel);
+        return view('actors.show', $viewModel);
     }
 
     /**
