@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\ViewModels\MoviesViewModel;
-use App\ViewModels\MovieViewModel;
+use App\ViewModels\TvShowViewModel;
+use App\ViewModels\TvViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class MoviesController extends Controller
+class TvController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,22 +19,22 @@ class MoviesController extends Controller
         $baseURL = config('services.tmdb.baseUrl');
         $apiKey = "?api_key=" . config('services.tmdb.token');
 
-        $popularMovies = Http::get($baseURL . '/movie/popular' . $apiKey)
+        $popularTv = Http::get($baseURL . '/tv/popular' . $apiKey)
             ->json()['results'];
 
-        $nowPlayingMovies = Http::get($baseURL . '/movie/now_playing' . $apiKey)
+        $topRatedTv = Http::get($baseURL . '/tv/top_rated' . $apiKey)
             ->json()['results'];
 
-        $genreArray = Http::get($baseURL . '/genre/movie/list' . $apiKey)
+        $genreArray = Http::get($baseURL . '/genre/tv/list' . $apiKey)
             ->json()['genres'];
 
-        $viewModel = new MoviesViewModel(
-            $popularMovies,
-            $nowPlayingMovies,
+        $viewModel = new TvViewModel(
+            $popularTv,
+            $topRatedTv,
             $genreArray,
         );
 
-        return view('movies.index', $viewModel);
+        return view('tv.index', $viewModel);
     }
 
     /**
@@ -70,18 +70,11 @@ class MoviesController extends Controller
         $apiKey = "?api_key=" . config('services.tmdb.token');
         $appends = 'credits,videos,images';
 
-        $movie = Http::get($baseURL . '/movie/' . $id . $apiKey . '&append_to_response=' . $appends)
+        $tvShow = Http::get($baseURL . '/tv/' . $id . $apiKey . '&append_to_response=' . $appends)
             ->json();
 
-        $genreArray = Http::get($baseURL . '/genre/movie/list' . $apiKey)
-            ->json()['genres'];
-        $genreArray = collect($genreArray)->mapWithKeys(function ($genre){
-            return [$genre['id'] => $genre['name']];
-        });
-
-        $viewModel = new MovieViewModel($movie);
-
-        return view('movies.show', $viewModel);
+        $viewModel = new TvShowViewModel($tvShow);
+        return view('tv.show', $viewModel);
     }
 
     /**

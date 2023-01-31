@@ -32,7 +32,7 @@
                     <a href="{{ route('movies.index') }}" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">Movies</a>
                 </li>
                 <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
-                    <a href="{{ route('movies.index') }}" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">TV Shows</a>
+                    <a href="{{ route('tv.index') }}" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">TV Shows</a>
                 </li>
                 <li class="md:ml-6 md:mt-1.5 mt-3 md:mt-0">
                     <a href="{{ route('actors.index') }}" class="hover:text-gray-400 align-middle transition ease-in-out duration-150">Actors</a>
